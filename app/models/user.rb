@@ -4,23 +4,29 @@ class User < ActiveRecord::Base
   
   
   def befriended?(other_user)
-    relationships.find_by_second_person_id(other_user.id)
+    friendships.find_by_second_person_id(other_user.id)
   end
 
   def befriend!(other_user)
-    following << other_user
-    #relationships.create!(followed_id: other_user.id)
+    friendships.create!(first_person_id: other_user.id)
   end
     
   def unfriend!(other_user)
-    following.delete(other_user)
-    #relationships.find_by_followed_id(other_user.id).destroy
+    friendships.find_by_second_person_id(other_user.id).destroy
   end
   
    #
    # M zu M Beziehung
    # User <-mc------ friendships ------mc-> User
-   has_many :friends, through: :friendships, source: :second_person, dependent: :destroy
+   
+   #has_many :friendships, :foreign_key => "first_person_id", :dependent => :destroy
+   #has_many :friends, :through => :friendships, :class_name => "User"
+   #has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "second_person_id"
+  # has_many :inverse_friends, :through => :inverse_friendships, :source => :user
+   
+   has_many :friendships, :foreign_key => "first_person_id" , :dependent => :destroy
+   has_many :reverse_friendships, :foreign_key => "second_person_id", :class_name => "Friendship", :dependent => :destroy
+   
    
    
    
