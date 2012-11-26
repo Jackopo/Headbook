@@ -13,9 +13,12 @@
 	<div class="navbar navbar-fixed-top">
 	  <div class="navbar-inner">
 	    <div class="container">
-	      <a class="brand" href="/">Head Book</a>
+		<%= active_link_to 'Head Book', '/', :class => "brand" %><%
+		# active_link_to provided via gem
+		%>
 	      <ul class="nav">
-	        <li class="active"><a href="/users">Users</a></li>
+		    <%= active_link_to 'Users', '/users', :wrap_tag => :li %>
+	        <%= active_link_to 'Posts', '/posts', :wrap_tag => :li %>
 	      </ul>
 	    </div>
 	  </div>

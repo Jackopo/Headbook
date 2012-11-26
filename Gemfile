@@ -7,6 +7,9 @@ gem 'rails', '3.2.6'
 
 gem 'sqlite3'
 
+# Menu Link active class helper method active_link_to()
+gem 'active_link_to'
+
 
 # Gems used only for assets and not required
 # in production environments by default.
