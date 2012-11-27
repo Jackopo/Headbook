@@ -1,13 +1,24 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Name:</b>
-  <%= @user.name %>
+	<b>Name:</b>
+	<%= @user.name %>
 </p>
 
 <p>
-  <b>Email:</b>
-  <%= @user.email %>
+	<b>Email:</b>
+	<%= @user.email %>
+</p>
+
+<p>	
+	<b>Posts:</b> <%= @user.posts.count %>
+	<% if @user.posts.any? %>
+	<ul>
+		<% @user.posts.each do |post| %>
+		<li><%= post.content %></li>
+		<% end %>
+	</ul>
+	<% end %>
 </p>
 
 
