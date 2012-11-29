@@ -1,4 +1,4 @@
-/* microposts */
+/* Posts */
 
 .posts {
   list-style: none; 
@@ -6,12 +6,16 @@
 }
 
 .posts li {
-    padding: 10px 0;
-    border-top: 1px solid #e8e8e8;
+	margin: 5px 0;
+    padding: 10px 5px;
+    border: 1px solid #c4c4c4;
+    border-radius: 5px;
+    width: 30%;
 }
 
 .content {
   display: block;
+  padding: 0 5px 0 0;
 }
 .timestamp {
   color: #999;
