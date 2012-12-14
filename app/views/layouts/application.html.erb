@@ -10,14 +10,28 @@
 <body>
 	<div class="navbar navbar-fixed-top">
 	  <div class="navbar-inner">
+
 	    <div class="container">
-		<%= active_link_to 'Head Book', '/', :class => "brand" %><%
-		# active_link_to provided via gem
-		%>
-	      <ul class="nav">
-		    <%= active_link_to 'Users', '/users', :wrap_tag => :li %>
-	        <%= active_link_to 'Posts', '/posts', :wrap_tag => :li %>
-	      </ul>
+	    	<div id="navbar-inner-left">
+	    		<% if user_signed_in? %>
+					<%= active_link_to current_user.name ? current_user.name : current_user.email, current_user, :class => "brand" %>	      		
+				<% else %>
+					<%= active_link_to 'Head Book', '/', :class => "brand" %>
+	      		<% end %>
+
+				<ul class="nav">
+		    		<%= active_link_to 'Users', '/users', :wrap_tag => :li %>
+	        		<%= active_link_to 'Posts', '/posts', :wrap_tag => :li %>
+	      		</ul>
+	  		</div>
+
+	  		<div id="navbar-inner-right">
+  				<% if user_signed_in? %>
+	         		<%= active_link_to "Logout", destroy_user_session_path, :method => :delete, :class => "brand" %>
+	      		<% else %>
+	         		<%= active_link_to "Login", new_user_session_path, :method => :get, :class => "brand" %>
+	      		<% end %>
+      		</div>
 	    </div>
 	  </div>
 	</div>

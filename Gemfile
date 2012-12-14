@@ -6,6 +6,7 @@ gem 'rails', '3.2.6'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
+gem 'devise'
 
 # Menu Link active class helper method active_link_to()
 gem 'active_link_to'

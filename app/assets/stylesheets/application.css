@@ -30,5 +30,20 @@ ul.nav li.active, .container  a.active {
 	background: linear-gradient(135deg,  #e2e2e2 0%,#dbdbdb 50%,#d1d1d1 51%,#fefefe 100%); /* W3C */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 
+}
 
+
+.navbar-inner{
+	height: 41px;
+}
+.container > div{
+	height: 60px;
+	overflow: hidden;
+}
+
+#navbar-inner-left{
+	float: left;
+}
+#navbar-inner-right{
+	float: right;
 }
