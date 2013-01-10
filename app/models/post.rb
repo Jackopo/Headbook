@@ -4,5 +4,6 @@ class Post < ActiveRecord::Base
 
   validates :user_id, :presence => true
   validates :content, :presence => true, :length => { :minimum => 1}
-  default_scope order: 'posts.created_at DESC'
+  # substitute ASC with DESC if we want a descending order
+  default_scope order: 'posts.created_at ASC'
 end

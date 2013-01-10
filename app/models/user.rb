@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   attr_accessible :email, :name
   has_many :posts, dependent: :destroy
-  
+  validates_presence_of :name
   
   def befriended?(other_user)
     friendships.find_by_second_person_id(other_user.id)
