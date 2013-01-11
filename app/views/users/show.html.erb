@@ -1,31 +1,39 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-	<b>Name:</b>
-	<%= @user.name %>
-</p>
-
-<p>
-	<b>Email:</b>
-	<%= @user.email %>
-</p>
-<p>
-	<strong>New Post:</strong>	
-	<%= form_for(@post) do |f| %>
-   		<%= f.text_field :content %>
-   		<%= f.hidden_field :user_id, :value => current_user.id %> 
-   		<%= f.submit %>
- 	<% end %>
-</p>
-<p>	
-	<% if @posts.any? %>
-	<b>Posts:</b> <%= @posts.count %>
-	<ul class="posts">
-		<%= render @posts %>	
-	</ul>
-	<% end %>
-</p>
-
-
+<div class="profileHeadline">
+	<%= image_tag "default_profile_picture.png", :alt => "profile picture" %>
+	<h1><%= @user.name %></h1>
+	<div class="profileOptions">
+		
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
+	</div>
+</div>
+
+<div class="profileDescription">
+	<p>
+		<b>Email:</b>
+		<%= @user.email %>
+	</p>
+</div>
+<div class="profileNewPost">
+	<p>
+		<strong>New Post:</strong>	
+		<%= form_for(@post) do |f| %>
+	   		<%= f.text_area :content %>
+	   		<%= f.hidden_field :user_id, :value => current_user.id %> 
+	   		<%= f.submit %>
+	 	<% end %>
+	</p>
+</div>
+<div class="profilePosts">
+	<p>	
+		<% if @posts.any? %>
+		<b>Posts:</b> <%= @posts.count %>
+		<ul class="posts">
+			<%= render @posts %>	
+		</ul>
+		<% end %>
+	</p>
+</div>
+
