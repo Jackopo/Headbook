@@ -25,7 +25,11 @@ describe UsersController do
   # update the return value of this method accordingly.
   def valid_attributes
     { 
-
+      :name => "Jacopo",
+      :email => "jacopo@antanix.net",
+      :password => "cavallo82",
+      :password_confirmation => "cavallo82",
+      :remember_me => true
      }
   end
 
@@ -33,7 +37,9 @@ describe UsersController do
   # in order to pass any filters (e.g. authentication) defined in
   # UsersController. Be sure to keep this updated too.
   def valid_session
-    {}
+    {
+
+    }
   end
 
   describe "GET index" do
