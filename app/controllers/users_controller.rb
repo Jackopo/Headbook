@@ -30,11 +30,15 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.json
   def new
-    @user = User.new
+    if(current_user.admin)
+      @user = User.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @user }
+      respond_to do |format|
+        format.html # new.html.erb
+        format.json { render json: @user }
+      end
+    else
+      redirect_to current_user, :notice => "You are not allowed to do this"
     end
   end
 
@@ -85,12 +89,14 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    @user = User.find(params[:id])
-    @user.destroy
+    if current_user.admin
+      @user = User.find(params[:id])
+      @user.destroy
 
-    respond_to do |format|
-      format.html { redirect_to users_url }
-      format.json { head :no_content }
+      respond_to do |format|
+        format.html { redirect_to users_url }
+        format.json { head :no_content }
+      end
     end
   end
 end

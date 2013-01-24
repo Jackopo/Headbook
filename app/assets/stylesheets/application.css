@@ -40,6 +40,16 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', end
 	overflow: hidden;
 }
 
+.notice{
+	position: absolute;
+	top:55px;
+	width:300px;
+	margin-left:-150px;
+	left: 50%;
+	text-align: center;
+	color: red;
+}
+
 #navbar-inner-left{
 	float: left;
 }
