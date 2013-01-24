@@ -38,18 +38,17 @@ class UsersController < ApplicationController
         format.json { render json: @user }
       end
     else
-      redirect_to current_user, :notice => "You are not allowed to do this"
+      redirect_to users_path, :notice => "You are not allowed to do this"
     end
   end
 
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
-
      if @user == current_user
       @user.update_attributes(params[:user])
    else
-      redirect_to root_path
+      redirect_to users_path, :notice => "You are not allowed to do this"
    end
 
   end
@@ -97,6 +96,8 @@ class UsersController < ApplicationController
         format.html { redirect_to users_url }
         format.json { head :no_content }
       end
+    else
+      redirect_to users_path, :notice => "You are not allowed to do this"
     end
   end
 end
