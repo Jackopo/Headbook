@@ -78,3 +78,12 @@ h1{
 	margin-bottom: 30px;
 }
 
+.bonbon{
+	float: right;
+	padding-right: 10px;
+}
+.bonbon  img{
+	display: inline-block;
+	height: 20px;
+}
+

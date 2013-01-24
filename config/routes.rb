@@ -61,6 +61,9 @@ Headbook::Application.routes.draw do
   # devise
   devise_for :users, :path => '', :path_names => {:sign_in => 'login', :sign_out => 'logout'}
 
+  match "users/:id/adminify" => "users#adminify", :as => "make_admin"
+
+
 
   # See how all your routes lay out with "rake routes"
 

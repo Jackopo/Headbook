@@ -2,6 +2,17 @@ class UsersController < ApplicationController
   before_filter :authenticate_user!
 
 
+
+  def adminify
+    @user = User.find(params[:id])
+    if @user.update_attribute(:admin, true);
+      redirect_to @user, :notice => "Level up!"
+    else
+      redirect_to @user, :notice => "Could not make you admin"
+    end 
+  end
+
+
   # GET /users
   # GET /users.json
   def index
@@ -38,18 +49,18 @@ class UsersController < ApplicationController
         format.json { render json: @user }
       end
     else
-      redirect_to users_path, :notice => "You are not allowed to do this"
+      redirect_to users_path, :notice => "You are not allowed to do Users#new"
     end
   end
 
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
-     if @user == current_user
-      @user.update_attributes(params[:user])
-   else
-      redirect_to users_path, :notice => "You are not allowed to do this"
-   end
+      if @user == current_user || current_user.admin
+        @user.update_attributes(params[:user])
+      else
+        redirect_to users_path, :notice => "You are not allowed to do Users#edit"
+      end  
 
   end
 
