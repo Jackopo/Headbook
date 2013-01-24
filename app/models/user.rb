@@ -23,6 +23,16 @@ class User < ActiveRecord::Base
     friendships.find_by_second_person_id(other_user.id).destroy
   end
   
+  # Search function - it searches for equal names and emails
+  def self.search(search)
+    if search
+      where("name LIKE ? OR email LIKE ?", "%#{search}%", "%#{search}")
+    else
+      all
+  end
+  
+end
+
    #
    # M zu M Beziehung
    # User <-mc------ friendships ------mc-> User
@@ -34,9 +44,6 @@ class User < ActiveRecord::Base
    
    has_many :friendships, :foreign_key => "first_person_id" , :dependent => :destroy
    has_many :reverse_friendships, :foreign_key => "second_person_id", :class_name => "Friendship", :dependent => :destroy
-   
-   
-   
-   
+     
    
 end
