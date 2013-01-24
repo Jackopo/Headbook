@@ -49,7 +49,7 @@ class UsersController < ApplicationController
         format.json { render json: @user }
       end
     else
-      redirect_to users_path, :notice => "You are not allowed to do Users#new"
+      redirect_to users_path, :notice => "You are not allowed to do Users#new."
     end
   end
 
@@ -59,7 +59,7 @@ class UsersController < ApplicationController
       if @user == current_user || current_user.admin
         @user.update_attributes(params[:user])
       else
-        redirect_to users_path, :notice => "You are not allowed to do Users#edit"
+        redirect_to users_path, :notice => "You are not allowed to do Users#edit."
       end  
 
   end
@@ -108,7 +108,7 @@ class UsersController < ApplicationController
         format.json { head :no_content }
       end
     else
-      redirect_to users_path, :notice => "You are not allowed to do this"
+      redirect_to users_path, :notice => "You are not allowed to do User#destroy."
     end
   end
 end

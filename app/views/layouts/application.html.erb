@@ -27,7 +27,7 @@
 
 	  		<div id="navbar-inner-right">
   				<% if user_signed_in? %>
-	         		<%= active_link_to "Logout", destroy_user_session_path, :method => :delete, :class => "brand" %>
+	         		<%= active_link_to "Logout", destroy_user_session_path, :method => :delete, :class => "login" %>
 	      		<% else %>
 	         		<%= active_link_to "Login", new_user_session_path, :method => :get, :class => "brand" %>
 	      		<% end %>

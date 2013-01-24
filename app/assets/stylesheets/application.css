@@ -35,10 +35,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', end
 
 /* layout view stuff */
 
-.navbar-inner{
-	height: 41px;
-}
-
 .notice{
 	position: absolute;
 	top:55px;
@@ -54,6 +50,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', end
 }
 #navbar-inner-right{
 	float: right;
+	padding: 12px 20px 8px;
+}
+
+.loginlogout{
+	font-family: "Josefin Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-weight: bold;
 }
 
 /* end of layout view stuff */
