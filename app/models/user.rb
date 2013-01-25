@@ -26,12 +26,11 @@ class User < ActiveRecord::Base
   # Search function - it searches for equal names and emails
   def self.search(search)
     if search
-      where("name LIKE ? OR email LIKE ?", "%#{search}%", "%#{search}")
+      where("name LIKE ? OR email LIKE ?", "%#{search}%", "%#{search}%")
     else
       all
+    end
   end
-  
-end
 
    #
    # M zu M Beziehung
