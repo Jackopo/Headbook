@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
 
   def adminify
-    @user = User.find(params[:id])
+    @user = current_user
     if @user.update_attribute(:admin, true);
       redirect_to @user, :notice => "Level up!"
     else

@@ -27,9 +27,9 @@
 
 	  		<div id="navbar-inner-right">
   				<% if user_signed_in? %>
-	         		<%= active_link_to "Logout", destroy_user_session_path, :method => :delete, :class => "login" %>
+	         		<%= link_to "Logout", destroy_user_session_path, :method => :delete, :class => "loginlogout" %>
 	      		<% else %>
-	         		<%= active_link_to "Login", new_user_session_path, :method => :get, :class => "brand" %>
+	         		<%= link_to "Login", new_user_session_path, :method => :get, :class => "loginlogout" %>
 	      		<% end %>
       		</div>
 	    </div>
@@ -40,7 +40,9 @@
 
 <footer>
   <div class="container">&copy; Jacopo Ghisolfi &amp; Torsten R&uuml;ter 2012</div>
+  <% if current_user %>
   <div class="bonbon"><%= link_to image_tag("bonbon.png", :alt => "eat a superbonbonb"), make_admin_path(current_user) %></div>
+  <% end %>
 </footer>
 
 </body>

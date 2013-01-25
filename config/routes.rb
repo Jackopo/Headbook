@@ -64,7 +64,6 @@ Headbook::Application.routes.draw do
   match "users/:id/adminify" => "users#adminify", :as => "make_admin"
 
 
-
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
