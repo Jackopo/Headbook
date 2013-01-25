@@ -1,0 +1,50 @@
+$mainColor: #d9230f;
+
+.profileHeadline{
+	position: relative;
+	width: 100%;
+	height: 150px;
+	padding-bottom: 5px;
+	border-bottom: 1px solid $mainColor;
+
+	img{
+		max-height: 150px;
+		max-width: 200px;
+	}
+
+	h1{
+		font-family: "Josefin Sans", Helvetica;
+		position: absolute;
+		bottom: 5px;
+		width: 100%;
+		text-align: center;
+	}
+
+	.profileOptions{
+		position: absolute;
+		top: 0px;
+		right: 0px;
+	}
+}
+
+.profileDescription{
+	padding-top: 20px;
+	border-right: 1px solid $mainColor;
+	
+	margin-bottom: 20px;
+	min-height: 50px;
+}
+
+.profileNewPost{
+	textarea{
+		display: block;
+		resize: none; 
+		height: 80px;
+		width: 350px;
+	}
+}
+
+.profilePosts{
+	padding-left: 10px;
+	border-left: 1px solid $mainColor;
+}

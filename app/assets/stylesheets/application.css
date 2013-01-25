@@ -37,7 +37,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', end
 	height: 41px;
 }
 .container > div{
-	height: 60px;
 	overflow: hidden;
 }
 

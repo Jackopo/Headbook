@@ -41,6 +41,13 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
+
+     if @user == current_user
+      @user.update_attributes(params[:user])
+   else
+      redirect_to root_path
+   end
+
   end
 
   # POST /users
