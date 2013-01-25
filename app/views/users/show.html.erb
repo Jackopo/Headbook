@@ -1,13 +1,9 @@
-<p id="notice"><%= notice %></p>
-
 <div class="profileHeadline">
 	<%= image_tag "default_profile_picture.png", :alt => "profile picture" %>
 	<h1><%= @user.name %></h1>
-	<div class="profileOptions">
-		
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
-	</div>
+	<% if(current_user.admin || current_user==@user) %>
+		<div class="profileOptions"><%= link_to 'Edit', edit_user_path(@user) %>&nbsp;|&nbsp;<%= link_to 'Back', users_path %></div>
+	<% end %>
 </div>
 
 <div class="profileDescription">
