@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130125001931) do
+ActiveRecord::Schema.define(:version => 20130126190518) do
 
   create_table "friendships", :force => true do |t|
     t.integer  "first_person_id"
@@ -42,6 +42,14 @@ ActiveRecord::Schema.define(:version => 20130125001931) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.boolean  "admin",                  :default => false
+    t.text     "bio"
+    t.string   "hometown"
+    t.string   "current_city"
+    t.date     "dob"
+    t.string   "work"
+    t.string   "employer"
+    t.string   "education"
+    t.string   "gender"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
