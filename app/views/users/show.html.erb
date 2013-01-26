@@ -13,12 +13,14 @@
 	</p>
 </div>
 <div class="profileNewPost">
-	<p>
+	<p>	
+		<% if current_user == @user %>
 		<strong>New Post:</strong>	
-		<%= form_for(@post) do |f| %>
-	   		<%= f.text_area :content %>
-	   		<%= f.hidden_field :user_id, :value => current_user.id %> 
-	   		<%= f.submit %>
+			<%= form_for(@post) do |f| %>
+		   		<%= f.text_area :content %>
+		   		<%= f.hidden_field :user_id, :value => current_user.id %> 
+		   		<%= f.submit %>
+		 	<% end %>
 	 	<% end %>
 	</p>
 </div>
