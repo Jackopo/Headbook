@@ -7,10 +7,12 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :admin, 
-                  :bio, :gender ,:hometown, :current_city, :dob, :work, :employer, :education
+                  :bio, :gender ,:hometown, :current_city, :dob, :work, :employer, :education, :avatar
   has_many :posts, dependent: :destroy
   validates_presence_of :name
   
+  has_attached_file :avatar, :styles => { :medium => "400x300>", :thumb => "200x150>" }
+
   def befriended?(other_user)
     friendships.find_by_second_person_id(other_user.id)
   end

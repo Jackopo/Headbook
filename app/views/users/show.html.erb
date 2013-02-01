@@ -1,5 +1,10 @@
 <div class="profileHeadline">
-	<%= image_tag "default_profile_picture.png", :alt => "profile picture" %>
+	<% if @user.avatar_file_name %>
+		<%= image_tag @user.avatar.url(:thumb) , :alt => "profile picture" %>
+	<% else %>
+		<%= image_tag "default_profile_picture.png" , :alt => "profile picture" %>
+	<% end %>
+
 	<h1><%= @user.name %></h1>
 	<% if(current_user.admin || current_user==@user) %>
 		<div class="profileOptions"><%= link_to 'Edit', edit_user_path(@user) %>&nbsp;|&nbsp;<%= link_to 'Back', users_path %></div>

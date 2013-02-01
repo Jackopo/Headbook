@@ -51,6 +51,16 @@
     <%= f.label :work %><br />
     <%= f.text_field :work %>
   </div>
+  <div class="field">
+    <%= f.label :avatar %><br />
+    <% if @user.avatar_file_name %>
+      <%= image_tag @user.avatar.url(:thumb) , :alt => "profile picture" %>
+    <% else %>
+      <%= image_tag "default_profile_picture.png" , :alt => "profile picture" %>
+    <% end %>
+    <%= f.file_field :avatar %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
