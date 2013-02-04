@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
     :dropbox_credentials => "#{Rails.root}/config/dropbox.yml",
     :styles => { :medium => "400x300>", :thumb => "200x150>" },
     :dropbox_options => {
-      :unique_filename => true      
+      :path => proc { |style| "/HeadBook/#{Rails.env}/#{style}/#{id}_#{avatar.original_filename}" }     
     }
 
   def befriended?(other_user)
