@@ -2,6 +2,17 @@ class UsersController < ApplicationController
   before_filter :authenticate_user!
 
 
+
+  def adminify
+    @user = current_user
+    if @user.update_attribute(:admin, true);
+      redirect_to @user, :notice => "Level up!"
+    else
+      redirect_to @user, :notice => "Could not make you admin"
+    end 
+  end
+
+
   # GET /users
   # GET /users.json
   def index
@@ -30,23 +41,26 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.json
   def new
-    @user = User.new
+    if(current_user.admin)
+      @user = User.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @user }
+      respond_to do |format|
+        format.html # new.html.erb
+        format.json { render json: @user }
+      end
+    else
+      redirect_to users_path, :notice => "You are not allowed to do Users#new."
     end
   end
 
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
-
-     if @user == current_user
-      @user.update_attributes(params[:user])
-   else
-      redirect_to root_path
-   end
+      if @user == current_user || current_user.admin
+        @user.update_attributes(params[:user])
+      else
+        redirect_to users_path, :notice => "You are not allowed to do Users#edit."
+      end  
 
   end
 
@@ -85,12 +99,16 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    @user = User.find(params[:id])
-    @user.destroy
+    if current_user.admin
+      @user = User.find(params[:id])
+      @user.destroy
 
-    respond_to do |format|
-      format.html { redirect_to users_url }
-      format.json { head :no_content }
+      respond_to do |format|
+        format.html { redirect_to users_url }
+        format.json { head :no_content }
+      end
+    else
+      redirect_to users_path, :notice => "You are not allowed to do User#destroy."
     end
   end
 end

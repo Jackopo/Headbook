@@ -17,8 +17,50 @@
   </div>
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.text_field :email %>
+    <%= f.email_field :email %>
   </div>
+  <div class="field">
+    <%= f.label :bio %><br />
+    <%= f.text_field :bio %>
+  </div>
+  <div class="field">
+    <%= f.label :gender %><br />
+    <%= f.select(:gender,[["Male","Male"],["Female","Female"]])  %>
+  </div>
+  <div class="field">
+    <%= f.label :hometown %><br />
+    <%= f.text_field :hometown %>
+  </div>
+  <div class="field">
+    <%= f.label :current_city %><br />
+    <%= f.text_field :current_city %>
+  </div>
+  <div class="field">
+    <%= f.label :dob %><br />
+    <%= f.date_select(:dob,:start_year => 1900 ) %>
+  </div>
+  <div class="field">
+    <%= f.label :education %><br />
+    <%= f.text_field :education %>
+  </div>  
+  <div class="field">
+    <%= f.label :employer %><br />
+    <%= f.text_field :employer %>
+  </div>
+  <div class="field">
+    <%= f.label :work %><br />
+    <%= f.text_field :work %>
+  </div>
+  <div class="field">
+    <%= f.label :avatar %><br />
+    <% if @user.avatar_file_name %>
+      <%= image_tag @user.avatar.url(:thumb) , :alt => "profile picture" %>
+    <% else %>
+      <%= image_tag "default_profile_picture.png" , :alt => "profile picture" %>
+    <% end %>
+    <%= f.file_field :avatar %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

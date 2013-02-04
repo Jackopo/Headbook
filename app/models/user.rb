@@ -6,11 +6,19 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
-  attr_accessible :email, :name
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :admin, 
+                  :bio, :gender ,:hometown, :current_city, :dob, :work, :employer, :education, :avatar
   has_many :posts, dependent: :destroy
   validates_presence_of :name
   
+  has_attached_file :avatar, 
+    :storage => :dropbox,
+    :dropbox_credentials => "#{Rails.root}/config/database.yml",
+    :styles => { :medium => "400x300>", :thumb => "200x150>" },
+    :dropbox_options => {
+      :unique_filename => true      
+    }
+
   def befriended?(other_user)
     friendships.find_by_second_person_id(other_user.id)
   end
@@ -26,12 +34,11 @@ class User < ActiveRecord::Base
   # Search function - it searches for equal names and emails
   def self.search(search)
     if search
-      where("name LIKE ? OR email LIKE ?", "%#{search}%", "%#{search}")
+      where("name LIKE ? OR email LIKE ?", "%#{search}%", search)
     else
       all
+    end
   end
-  
-end
 
    #
    # M zu M Beziehung

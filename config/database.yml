@@ -8,6 +8,12 @@ development:
   database: db/development.sqlite3
   pool: 5
   timeout: 5000
+  app_key: "mkw0yuq61gt1adh"
+  app_secret: "oo9qomqyvvysqca"
+  access_token: "jk9ylrr526rs9ms"
+  access_token_secret: "jh5f0zvkm4sqdeq"
+  user_id: "5556292"
+  access_type: "dropbox"
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

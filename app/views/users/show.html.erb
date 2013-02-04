@@ -1,13 +1,14 @@
-<p id="notice"><%= notice %></p>
-
 <div class="profileHeadline">
-	<%= image_tag "default_profile_picture.png", :alt => "profile picture" %>
+	<% if @user.avatar_file_name %>
+		<%= image_tag @user.avatar.url(:thumb) , :alt => "profile picture" %>
+	<% else %>
+		<%= image_tag "default_profile_picture.png" , :alt => "profile picture" %>
+	<% end %>
+
 	<h1><%= @user.name %></h1>
-	<div class="profileOptions">
-		
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
-	</div>
+	<% if(current_user.admin || current_user==@user) %>
+		<div class="profileOptions"><%= link_to 'Edit', edit_user_path(@user) %>&nbsp;|&nbsp;<%= link_to 'Back', users_path %></div>
+	<% end %>
 </div>
 
 <div class="profileDescription">
@@ -15,14 +16,48 @@
 		<b>Email:</b>
 		<%= @user.email %>
 	</p>
+	<p>
+		<b>Biography:</b>
+		<%= @user.bio %>
+	</p>	
+	<p>
+		<b>Gender:</b>
+		<%= @user.gender %>
+	</p>	
+	<p>
+		<b>Hometown:</b>
+		<%= @user.hometown %>
+	</p>
+	<p>
+		<b>Current Living in:</b>
+		<%= @user.current_city %>
+	</p>
+	<p>
+		<b>Date of Birth:</b>
+		<%= @user.dob %>
+	</p>
+	<p>
+		<b>Education:</b>
+		<%= @user.education %>
+	</p>
+	<p>
+		<b>Employer:</b>
+		<%= @user.employer %>
+	</p>
+	<p>
+		<b>Position:</b>
+		<%= @user.work %>
+	</p>
 </div>
 <div class="profileNewPost">
-	<p>
+	<p>	
+		<% if current_user == @user %>
 		<strong>New Post:</strong>	
-		<%= form_for(@post) do |f| %>
-	   		<%= f.text_area :content %>
-	   		<%= f.hidden_field :user_id, :value => current_user.id %> 
-	   		<%= f.submit %>
+			<%= form_for(@post) do |f| %>
+		   		<%= f.text_area :content %>
+		   		<%= f.hidden_field :user_id, :value => current_user.id %> 
+		   		<%= f.submit %>
+		 	<% end %>
 	 	<% end %>
 	</p>
 </div>

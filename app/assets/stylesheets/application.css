@@ -13,7 +13,7 @@
  */
 
 /* Bootstrap stuff */
-body { padding-top: 100px; }
+body { padding: 70px 0 20px; }
 footer { margin-top: 100px; }
 table, td, th { vertical-align: middle !important; border: none !important; }
 th { border-bottom: 1px solid #DDD !important; }
@@ -31,13 +31,18 @@ ul.nav li.active, .container  a.active {
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 
 }
+/* end of Bootstrap Stuff */
 
+/* layout view stuff */
 
-.navbar-inner{
-	height: 41px;
-}
-.container > div{
-	overflow: hidden;
+.notice{
+	position: absolute;
+	top:55px;
+	width:300px;
+	margin-left:-150px;
+	left: 50%;
+	text-align: center;
+	color: red;
 }
 
 #navbar-inner-left{
@@ -45,4 +50,42 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', end
 }
 #navbar-inner-right{
 	float: right;
+	padding: 12px 20px 8px;
 }
+
+.loginlogout{
+	font-family: "Josefin Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-weight: bold;
+}
+
+/* end of layout view stuff */
+/* global stuff */
+::selection {
+	background: rgba(217,35,15,0.4);
+	color:#fff;
+}
+
+moz-selection {
+	background: rgba(217,35,15,0.4);
+	color:#fff;
+}
+
+::-webkit-selection {
+	background: rgba(217,35,15,0.4);
+	color:#fff;
+}
+
+
+h1{
+	margin-bottom: 30px;
+}
+
+.bonbon{
+	float: right;
+	padding-right: 10px;
+}
+.bonbon  img{
+	display: inline-block;
+	height: 20px;
+}
+
