@@ -29,3 +29,9 @@ production:
   database: db/production.sqlite3
   pool: 5
   timeout: 5000
+  app_key: "mkw0yuq61gt1adh"
+  app_secret: "oo9qomqyvvysqca"
+  access_token: "jk9ylrr526rs9ms"
+  access_token_secret: "jh5f0zvkm4sqdeq"
+  user_id: "5556292"
+  access_type: "dropbox"
