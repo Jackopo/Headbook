@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   
   has_attached_file :avatar, 
     :storage => :dropbox,
-    :dropbox_credentials => "#{Rails.root}/config/database.yml",
+    :dropbox_credentials => "#{Rails.root}/config/dropbox.yml",
     :styles => { :medium => "400x300>", :thumb => "200x150>" },
     :dropbox_options => {
       :unique_filename => true      
