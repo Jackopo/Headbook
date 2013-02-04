@@ -11,7 +11,13 @@ class User < ActiveRecord::Base
   has_many :posts, dependent: :destroy
   validates_presence_of :name
   
-  has_attached_file :avatar, :styles => { :medium => "400x300>", :thumb => "200x150>" }
+  has_attached_file :avatar, 
+    :storage => :dropbox,
+    :dropbox_credentials => "#{Rails.root}/config/database.yml",
+    :styles => { :medium => "400x300>", :thumb => "200x150>" },
+    :dropbox_options => {
+      :unique_filename => true      
+    }
 
   def befriended?(other_user)
     friendships.find_by_second_person_id(other_user.id)
