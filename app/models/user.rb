@@ -20,15 +20,14 @@ class User < ActiveRecord::Base
     }
 
   def befriended?(other_user)
-    friendships.find_by_second_person_id(other_user.id)
-  end
-
-  def befriend!(other_user)
-    friendships.create!(first_person_id: other_user.id)
-  end
     
-  def unfriend!(other_user)
-    friendships.find_by_second_person_id(other_user.id).destroy
+    if (Friendship.find_by_first_person_id_and_second_person_id(self.id, other_user.id) || 
+      Friendship.find_by_first_person_id_and_second_person_id(other_user.id, self.id) )
+      true
+    else
+      false
+    end
+
   end
   
   # Search function - it searches for equal names and emails
