@@ -3,6 +3,8 @@
 <p>
   <b>Content:</b>
   <%= @post.content %>
+
+  <%= image_tag @post.image.url(:original) %>
 </p>
 
 <p>

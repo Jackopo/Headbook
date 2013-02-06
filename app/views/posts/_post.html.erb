@@ -1,4 +1,7 @@
 <li>
 	<p class="content"><%= post.content %></p>
+	<% if !post.image.blank? %>
+        <%= image_tag post.image.url(:original) %>
+    <% end %>
 	<span class="timestamp">Posted <%= post.created_at %></span>
 </li>

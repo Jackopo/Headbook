@@ -3,9 +3,24 @@
 <div class="postsTimeline">
     <% @posts.each do |post| %>
     <div class="postWrapper">
-        <div class="postPicture"><%= image_tag "default_profile_picture.png", :alt => "profile picture" %></div>
+        <div class="postPicture">
+            <%= image_tag "default_profile_picture.png", :alt => "profile picture" %>
+            <% if !post.user.avatar.blank? %>
+                <%= image_tag post.user.avatar.url(:thumb) , :alt => "profile picture" %>
+            <% else %>
+                <%= image_tag "default_profile_picture.png" , :alt => "profile picture" %>
+            <% end %>
+        </div>
         <div class="postAuthor"><%= link_to post.user.name, user_path(post.user) %></div>
-        <div class="postContent"><%= post.content %></div>
+        <div class="postContent">
+            <% if !post.image.blank? %>
+            <div class="postImage">
+                <%= image_tag post.image.url(:original) %>
+            </div>
+            <% end %>
+
+            <%= post.content %>
+        </div>
 
         <% if(current_user.admin || current_user==post.user) %>
             <span class="postControls"><%= link_to 'Edit', edit_post_path(post)  %>&nbsp;|&nbsp;<%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></span>
