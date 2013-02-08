@@ -7,6 +7,10 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all
 
+    @posts.delete_if{
+      |p| !User.find(p.user_id).befriended?(current_user) && p.user_id != current_user.id
+    }
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @posts }
@@ -18,9 +22,15 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @post }
+    if !User.find(@post.user_id).befriended?(current_user) && @post.user_id != current_user.id
+      respond_to do |format|
+        format.html { redirect_to posts_url, notice: 'This post is not visible to you.' }
+      end
+    else
+      respond_to do |format|
+        format.html # show.html.erb
+        format.json { render json: @post }
+      end
     end
   end
 
