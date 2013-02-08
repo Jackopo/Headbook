@@ -9,7 +9,7 @@
 	<% if(current_user.admin || current_user==@user) %>
 		<div class="profileOptions"><%= link_to 'Edit', edit_user_path(@user) %>&nbsp;|&nbsp;<%= link_to 'Back', users_path %></div>
 	<% elsif current_user!=@user  && !current_user.befriended?(@user) %>
-			<div>
+			<div class="profileFriendForm">
 				<%= form_tag('/friendships') do%>
 				<div>
 					<%= hidden_field_tag :other_person_id, @user.id %>  
@@ -18,7 +18,7 @@
 				<% end %> 
 			</div>
 	<% elsif current_user!=@user  && current_user.befriended?(@user) %>
-			<div>
+			<div class="profileFriendForm">
 				<%= form_tag('/friendships/'+@user.id.to_s , :method => "DELETE") do%>
 				<div>
 					<%= hidden_field_tag :other_person_id, @user.id %>  
@@ -30,6 +30,7 @@
 </div>
 
 <div class="profileDescription">
+	<% if @user.befriended?(current_user) || @user == current_user %>
 	<p>
 		<b>Email:</b>
 		<%= @user.email %>
@@ -66,6 +67,9 @@
 		<b>Position:</b>
 		<%= @user.work %>
 	</p>
+	<% else %>
+	<p>Add this person as a friend to see more information</p>
+	<% end %>
 </div>
 <div class="profileNewPost">
 	<p>	
