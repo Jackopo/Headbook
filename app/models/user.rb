@@ -50,6 +50,21 @@ class User < ActiveRecord::Base
    
    has_many :friendships, :foreign_key => "first_person_id" , :dependent => :destroy
    has_many :reverse_friendships, :foreign_key => "second_person_id", :class_name => "Friendship", :dependent => :destroy
-     
+   
+   def getFriends 
+
+      friends = Array.new
+
+      friendships.each {
+        |friendship| friends << User.find(friendship.second_person_id)
+      }
+
+      reverse_friendships.each {
+        |friendship| friends << User.find(friendship.first_person_id)
+      }
+
+      friends
+
+   end  
    
 end

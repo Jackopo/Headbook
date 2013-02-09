@@ -34,7 +34,7 @@ $mainColor: #d7770f;
 	}
 }
 
-.profileDescription{
+.profileDescription {
 	padding-top: 20px;
 	border-right: 1px solid $mainColor;
 	
@@ -54,4 +54,18 @@ $mainColor: #d7770f;
 .profilePosts{
 	padding-left: 10px;
 	border-left: 1px solid $mainColor;
+}
+
+.friendList {
+	padding-top: 20px;
+	border-right: 1px solid $mainColor;
+
+	p {
+	margin: 0;
+	padding-bottom: 10px;
+	}
+}
+
+.friend  {
+	display: inline-block;
 }

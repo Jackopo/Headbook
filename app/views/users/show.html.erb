@@ -1,99 +1,122 @@
 <div class="profileHeadline">
 	<% if !@user.avatar.blank? %>
-		<%= image_tag @user.avatar.url(:thumb) , :alt => "profile picture" %>
+	<%= image_tag @user.avatar.url(:thumb) , :alt => "profile picture" %>
 	<% else %>
-		<%= image_tag "default_profile_picture.png" , :alt => "profile picture" %>
+	<%= image_tag "default_profile_picture.png" , :alt => "profile picture" %>
 	<% end %>
 
 	<h1><%= @user.name %></h1>
 	<% if(current_user.admin || current_user==@user) %>
-		<div class="profileOptions"><%= link_to 'Edit', edit_user_path(@user) %>&nbsp;|&nbsp;<%= link_to 'Back', users_path %></div>
+	<div class="profileOptions"><%= link_to 'Edit', edit_user_path(@user) %>&nbsp;|&nbsp;<%= link_to 'Back', users_path %></div>
 	<% elsif current_user!=@user  && !current_user.befriended?(@user) %>
-			<div class="profileFriendForm">
-				<%= form_tag('/friendships') do%>
-				<div>
-					<%= hidden_field_tag :other_person_id, @user.id %>  
-					<%= submit_tag "add friend" %>
-				</div>
-				<% end %> 
-			</div>
+	<div class="profileFriendForm">
+		<%= form_tag('/friendships') do%>
+		<div>
+			<%= hidden_field_tag :other_person_id, @user.id %>  
+			<%= submit_tag "add friend" %>
+		</div>
+		<% end %> 
+	</div>
 	<% elsif current_user!=@user  && current_user.befriended?(@user) %>
-			<div class="profileFriendForm">
-				<%= form_tag('/friendships/'+@user.id.to_s , :method => "DELETE") do%>
-				<div>
-					<%= hidden_field_tag :other_person_id, @user.id %>  
-					<%= submit_tag "unfriend" %>
-				</div>
-				<% end %> 
-			</div>
+	<div class="profileFriendForm">
+		<%= form_tag('/friendships/'+@user.id.to_s , :method => "DELETE") do%>
+		<div>
+			<%= hidden_field_tag :other_person_id, @user.id %>  
+			<%= submit_tag "unfriend" %>
+		</div>
+		<% end %> 
+	</div>
 	<% end %>
 </div>
 
-<div class="profileDescription">
-	<% if @user.befriended?(current_user) || @user == current_user %>
-	<p>
-		<b>Email:</b>
-		<%= @user.email %>
-	</p>
-	<p>
-		<b>Biography:</b>
-		<%= @user.bio %>
-	</p>	
-	<p>
-		<b>Gender:</b>
-		<%= @user.gender %>
-	</p>	
-	<p>
-		<b>Hometown:</b>
-		<%= @user.hometown %>
-	</p>
-	<p>
-		<b>Current Living in:</b>
-		<%= @user.current_city %>
-	</p>
-	<p>
-		<b>Date of Birth:</b>
-		<%= @user.dob %>
-	</p>
-	<p>
-		<b>Education:</b>
-		<%= @user.education %>
-	</p>
-	<p>
-		<b>Employer:</b>
-		<%= @user.employer %>
-	</p>
-	<p>
-		<b>Position:</b>
-		<%= @user.work %>
-	</p>
+<div class="friendList">
+	<% if !@friends.blank? %>
+	<h3>Friends</h3>
+		<% @friends.each do |friend| %>
+			<div class="friend">
+				<%= link_to friend do %>
+					<% if friend.avatar.blank? %>
+						<%= image_tag "default_profile_picture.png" ,:width => "50"  ,:alt => "profile picture"  %>
+					<% else %>
+						<%= image_tag friend.avatar.url(:thumb) ,:width => "50" ,:alt => "profile picture" %>
+					<% end %>	
+					<p> <%= friend.name %> </p>
+				<% end %>
+			</div>	
+		<% end %>
 	<% else %>
-	<p>Add this person as a friend to see more information</p>
+		<p> No Friends :( </p>
 	<% end %>
 </div>
-<div class="profileNewPost">
-	<p>	
-		<% if current_user == @user %>
-		<strong>New Post:</strong>	
+
+<% if @user.befriended?(current_user) || @user == current_user %>
+	<div class="profileDescription">
+		<p>
+			<b>Email:</b>
+			<%= @user.email %>
+		</p>
+		<p>
+			<b>Biography:</b>
+			<%= @user.bio %>
+		</p>	
+		<p>
+			<b>Gender:</b>
+			<%= @user.gender %>
+		</p>	
+		<p>
+			<b>Hometown:</b>
+			<%= @user.hometown %>
+		</p>
+		<p>
+			<b>Current Living in:</b>
+			<%= @user.current_city %>
+		</p>
+		<p>
+			<b>Date of Birth:</b>
+			<%= @user.dob %>
+		</p>
+		<p>
+			<b>Education:</b>
+			<%= @user.education %>
+		</p>
+		<p>
+			<b>Employer:</b>
+			<%= @user.employer %>
+		</p>
+		<p>
+			<b>Position:</b>
+			<%= @user.work %>
+		</p>
+		
+	</div>
+	<div class="profileNewPost">
+		<p>	
+			<% if current_user == @user %>
+			<strong>New Post:</strong>	
 			<%= form_for(@post) do |f| %>
-		   		<%= f.text_area :content %>
-		   		  
-    			<%= f.file_field :image %>
-  
-		   		<%= f.hidden_field :user_id, :value => current_user.id %> 
-		   		<%= f.submit %>
-		 	<% end %>
-	 	<% end %>
-	</p>
-</div>
-<div class="profilePosts">
-	<p>	
-		<% if @posts.any? %>
-		<b>Posts:</b> <%= @posts.count %>
-		<ul class="posts">
-			<%= render @posts %>	
-		</ul>
-		<% end %>
-	</p>
-</div>
+			<%= f.text_area :content %>
+
+			<%= f.file_field :image %>
+
+			<%= f.hidden_field :user_id, :value => current_user.id %> 
+			<%= f.submit %>
+			<% end %>
+			<% end %>
+		</p>
+	</div>
+	<div class="profilePosts">
+		<p>	
+			<% if @posts.any? %>
+			<b>Posts:</b> <%= @posts.count %>
+			<ul class="posts">
+				<%= render @posts %>	
+			</ul>
+			<% end %>
+		</p>
+	</div>
+<% else %>
+	<div class="profileDescription">
+		<p>Add this person as a friend to see more information</p>
+	</div>
+<% end %>
 

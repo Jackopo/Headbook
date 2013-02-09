@@ -31,6 +31,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @posts = @user.posts.all
     @post = Post.new
+    @friends = @user.getFriends
 
     respond_to do |format|
       format.html # show.html.erb
