@@ -4,7 +4,7 @@
 	<b>Content:</b>
 	<%= @post.content %>
 
-  	<% if @post.image.any? %>
+  	<% if !@post.image.blank? %>
 		<%= image_tag @post.image.url(:original) %>
 	<% end %>
 </p>
