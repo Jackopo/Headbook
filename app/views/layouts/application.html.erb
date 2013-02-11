@@ -23,6 +23,7 @@
 		    		<%= active_link_to 'Users', '/users', :wrap_tag => :li %>
 	        		<%= active_link_to 'Posts', '/posts', :wrap_tag => :li %>
 	      		</ul>
+
 	  		</div>
 
 	  		<div id="navbar-inner-right">
@@ -40,9 +41,13 @@
 
 <footer>
   <div class="container">&copy; Jacopo Ghisolfi &amp; Torsten R&uuml;ter 2012</div>
+  
   <% if current_user %>
-  <div class="bonbon"><%= link_to image_tag("bonbon.png", :alt => "eat a superbonbonb"), make_admin_path(current_user) %></div>
+	  <div class="bonbon">
+	  	<%= link_to image_tag("bonbon.png", :alt => "eat a superbonbon"), make_admin_path(current_user) %>
+	  </div>
   <% end %>
+
 </footer>
 
 </body>
