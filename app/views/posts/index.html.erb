@@ -4,7 +4,6 @@
     <% @posts.each do |post| %>
     <div class="postWrapper">
         <div class="postPicture">
-            <%= image_tag "default_profile_picture.png", :alt => "profile picture" %>
             <% if !post.user.avatar.blank? %>
                 <%= image_tag post.user.avatar.url(:thumb) , :alt => "profile picture" %>
             <% else %>
