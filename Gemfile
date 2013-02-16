@@ -12,7 +12,8 @@ group :development, :test do
 end
 
 group :production do 
-	gem 'pg'
+	#gem 'pg'
+	gem 'sqlite3'
 end
 
 gem 'devise'
